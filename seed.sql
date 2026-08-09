@@ -49,7 +49,7 @@ INSERT INTO company (name) VALUES
 ('XP Inc.');
 
 --Users
-INSERT INTO users
+INSERT INTO user
 (
     name,
     email,
