@@ -3,25 +3,25 @@
 CREATE TABLE IF NOT EXISTS company (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
-)
+);
 
 --Levels
 CREATE TABLE IF NOT EXISTS level (
     id INTEGER PRIMARY KEY,
     name TEXT UNIQUE NOT NULL
-)
+);
 
 --Employment types
 CREATE TABLE IF NOT EXISTS employment_type (
     id INTEGER PRIMARY KEY,
     name TEXT UNIQUE NOT NULL
-)
+);
 
 --SKILL
 CREATE TABLE IF NOT EXISTS skill (
     id INTEGER PRIMARY KEY,
     name TEXT UNIQUE NOT NULL
-)
+);
 
 --USER
 --He could not have a preferred work mode i guess, so NULL
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS user (
     
     FOREIGN KEY(preferred_level_id) REFERENCES level(id),
     FOREIGN KEY(preferred_employment_type_id) REFERENCES employment_type(id)
-)
+);
 
 --JOB
 -- I will do the application in python using enums
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS job (
     FOREIGN KEY(level_id) REFERENCES level(id),
     FOREIGN KEY(employment_type_id) REFERENCES employment_type(id),
     FOREIGN KEY(company_id) REFERENCES company(id)
-)
+);
 
 --JOBSKILL
 CREATE TABLE IF NOT EXISTS jobskill (
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS jobskill (
 
     FOREIGN KEY(job_id) REFERENCES job(id),
     FOREIGN KEY(skill_id) REFERENCES skill(id)
-)
+);
 
 --USERSKILL
 CREATE TABLE IF NOT EXISTS userskill (
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS userskill (
 
     FOREIGN KEY(user_id) REFERENCES user(id),
     FOREIGN KEY(skill_id) REFERENCES skill(id)
-)
+);
 
 --APPLICATION
 -- status ( 0 = Saved
@@ -109,4 +109,4 @@ CREATE TABLE IF NOT EXISTS application (
 
     FOREIGN KEY(user_id) REFERENCES user(id),
     FOREIGN KEY(job_id) REFERENCES job(id)
-)
+);
