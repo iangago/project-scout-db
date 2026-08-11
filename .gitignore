@@ -2,3 +2,5 @@
 *.sqlite
 __pycache__/
 .env
+config.py
+*.json
