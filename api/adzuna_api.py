@@ -5,7 +5,7 @@ from raw import raw_data as rd
 app_id = ADZUNA_APP_ID
 app_key = ADZUNA_APP_KEY
 
-def get_raw_jobs(term):
+def get_raw_jobs(term, where):
     raw_jobs = []
 
     for i in range (1, 20):
@@ -14,7 +14,7 @@ def get_raw_jobs(term):
         params = {
             "app_id": app_id,
             "app_key": app_key,
-            "where": "Rio de Janeiro",
+            "where": {where},
             "what": term,
             "results_per_page": 20,
             "content-type": "application/json"
@@ -36,7 +36,7 @@ def get_raw_jobs(term):
 
     return raw_jobs
 
-def search_all_terms():
+def search_all_terms(where):
     JOB_SEARCH_TERMS = [
         ["software developer", []],
         ["software engineer", []],
@@ -50,7 +50,7 @@ def search_all_terms():
     ]
 
     for term in JOB_SEARCH_TERMS:
-        term[1] = get_raw_jobs(term[0])
+        term[1] = get_raw_jobs(term[0], where)
 
     rd.save_raw_data(JOB_SEARCH_TERMS)
 
